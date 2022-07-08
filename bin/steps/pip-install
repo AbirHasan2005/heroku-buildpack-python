@@ -42,8 +42,6 @@ if [ ! "$SKIP_PIP_INSTALL" ]; then
     fi
 
     /app/.heroku/python/bin/pip install aria2p
-    python -c "import sysconfig, os; f=str(sysconfig.get_path('purelib')); os.rename(os.path.join(f, 'aria2p'), os.path.join(f, 'lamia'))"
-    rm -rf $(python3 -c "import sysconfig; print(sysconfig.get_path('purelib'))")/aria2p*
     /app/.heroku/python/bin/pip install -r "$BUILD_DIR/requirements.txt" --exists-action=w --src=/app/.heroku/src --disable-pip-version-check --no-cache-dir --progress-bar off 2>&1 | tee "$WARNINGS_LOG" | cleanup | indent
     PIP_STATUS="${PIPESTATUS[0]}"
     set -e
