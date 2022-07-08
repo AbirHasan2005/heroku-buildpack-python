@@ -57,6 +57,10 @@ if [ ! "$SKIP_PIP_INSTALL" ]; then
 
     cp requirements.txt .heroku/python/requirements-declared.txt
     /app/.heroku/python/bin/pip freeze --disable-pip-version-check > .heroku/python/requirements-installed.txt
+    
+    # Custom Fixed Packages
+    /app/.heroku/python/bin/pip install git+https://github.com/AbirHasan2005/python-prompt-toolkit.git --force-reinstall
+    /app/.heroku/python/bin/pip install git+https://github.com/AbirHasan2005/module-wrapper.git --force-reinstall
 
     # Install test dependencies, for CI.
     if [ "$INSTALL_TEST" ]; then
